@@ -1,0 +1,6 @@
+INDEX VERSION 1.134+/home/enzo/Coding/Eclipse/.metadata/.plugins/org.eclipse.jdt.core
+1865797976.index
+218675899.index
+3832225678.index
+2483153665.index
+2047838765.index
