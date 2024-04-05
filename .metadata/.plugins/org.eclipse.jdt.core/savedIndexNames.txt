@@ -1,7 +1,0 @@
-INDEX VERSION 1.134+/home/enzo/Coding/Eclipse/CarpetaJava/.metadata/.plugins/org.eclipse.jdt.core
-339715202.index
-3832225678.index
-218675899.index
-2047838765.index
-2483153665.index
-1865797976.index
