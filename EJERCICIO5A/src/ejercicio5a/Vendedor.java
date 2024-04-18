@@ -16,4 +16,8 @@ public class Vendedor extends Empleado {
 	public void setTotalVentas(int totalVentas) {
 		this.totalVentas = totalVentas;
 	}
+	@Override
+	public double getSueldo() {
+		return getSueldoBase() + (porcenComision*totalVentas/100);
+	}
 }

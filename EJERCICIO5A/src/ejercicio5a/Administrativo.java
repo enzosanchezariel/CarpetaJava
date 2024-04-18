@@ -16,4 +16,8 @@ public class Administrativo extends Empleado {
 	public void setHsMes(double hsMes) {
 		this.hsMes = hsMes;
 	}
+	@Override
+	public double getSueldo() {
+		return getSueldoBase() * ((hsExtra * 1.5)/hsMes) / hsMes;
+	}
 }

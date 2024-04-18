@@ -37,4 +37,5 @@ public class Empleado {
 	public void setSueldoBase(double sueldoBase) {
 		this.sueldoBase = sueldoBase;
 	}
+	public double getSueldo() {return 0.0;}
 }
