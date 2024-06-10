@@ -8,16 +8,23 @@ import logic.ProductCrud;
 
 public class ProductMenu {
 	
+    private ProductCrud ctrlProd = new ProductCrud();
+
 	public void startMenu() {
 		Scanner reader = new Scanner(System.in);
 		String opt;
 		do{
+			mainMenu();
 			opt = reader.nextLine();
-			if (opt.compareTo("list") == 0) list(ProductCrud.retrieveAll());
-			else if (opt.compareTo("search") == 0) {
-				String id = reader.nextLine();
-				showProduct(ProductCrud.retrieveById(id));
+			if (opt.compareTo("list") == 0){
+				list(ctrlProd.retrieveAll());
 			}
+			else if (opt.compareTo("search") == 0) {
+				Product p = new Product();
+				p.setId(Integer.parseInt(reader.nextLine()));
+				showProduct(ctrlProd.retrieveById(p));
+			}
+
 			else if (opt.compareTo("create") == 0) System.out.println("Usted eligió create");
 			else if (opt.compareTo("delete") == 0) System.out.println("Usted eligió delete");
 			else if (opt.compareTo("update") == 0) System.out.println("Usted eligió update");
