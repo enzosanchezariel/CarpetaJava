@@ -19,6 +19,14 @@ public class Product {
 		this.shippingIncluded = shippingIncluded;
 	}
 	
+	public Product(String name, String description, double price, int stock, boolean shippingIncluded) {
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.stock = stock;
+		this.shippingIncluded = shippingIncluded;
+	}
+
 	public int getId() {
 		return id;
 	}

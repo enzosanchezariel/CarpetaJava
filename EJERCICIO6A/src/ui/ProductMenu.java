@@ -21,18 +21,63 @@ public class ProductMenu {
 			}
 			else if (opt.compareTo("search") == 0) {
 				Product p = new Product();
+				System.out.println("Id:");
 				p.setId(Integer.parseInt(reader.nextLine()));
 				showProduct(ctrlProd.retrieveById(p));
 			}
 
-			else if (opt.compareTo("create") == 0) System.out.println("Usted eligió create");
-			else if (opt.compareTo("delete") == 0) System.out.println("Usted eligió delete");
-			else if (opt.compareTo("update") == 0) System.out.println("Usted eligió update");
-			else if (opt.compareTo("exit") == 0) System.out.println("Usted eligió exit");
-			}while(opt.compareTo("exit") != 0);
+			else if (opt.compareTo("create") == 0) {
+				System.out.println("Nombre:");
+				String name = reader.nextLine();
+				System.out.println("Descripción:");
+				String description = reader.nextLine();
+				System.out.println("Precio:");
+				double price = Double.parseDouble(reader.nextLine());
+				System.out.println("Stock:");
+				int stock = Integer.parseInt(reader.nextLine());
+				System.out.println("¿Envío incluido? (s/N):");
+				boolean shippingIncluded = reader.nextLine().toLowerCase().compareTo("s") == 0 ? true : false;
+				Product p = new Product(name, description, price, stock, shippingIncluded);
+				System.out.println("Resumen del producto creado");
+				ctrlProd.save(p);
+			}
+			else if (opt.compareTo("delete") == 0) {
+				Product p = new Product();
+				list(ctrlProd.retrieveAll());
+				System.out.println("Id:");
+				p.setId(Integer.parseInt(reader.nextLine()));
+				ctrlProd.delete(p);
+			}
+			else if (opt.compareTo("update") == 0) {
+				Product p = new Product();
+				list(ctrlProd.retrieveAll());
+				System.out.println("Id:");
+				p.setId(Integer.parseInt(reader.nextLine()));
+				p = ctrlProd.retrieveById(p);
+				//---
+				System.out.println("Nombre (En blanco para saltear):");
+				String name = reader.nextLine();
+				if(name.compareTo("") != 0) p.setName(name);
+				System.out.println("Descripción (En blanco para saltear):");
+				String description = reader.nextLine();
+				if(description.compareTo("") != 0) p.setDescription(description);
+				System.out.println("Precio (En blanco para saltear):");
+				String price = reader.nextLine();
+				if(price.compareTo("") != 0) p.setPrice(Double.parseDouble(price));
+				System.out.println("Stock (En blanco para saltear):");
+				String stock = reader.nextLine();
+				if(stock.compareTo("") != 0) p.setStock(Integer.parseInt(stock));
+				System.out.println("¿Envío incluido? (s/N):");
+				boolean shippingIncluded = reader.nextLine().toLowerCase().compareTo("s") == 0 ? true : false;
+				p.setShippingIncluded(shippingIncluded);
+				//---
+				ctrlProd.update(p);
+			}
+			else if (opt.compareTo("exit") == 0) System.out.println("Bye");
+		}while(opt.compareTo("exit") != 0);
 		reader.close();
 	}
-	
+
 	void mainMenu() {
 		System.out.println("Productos");
 		System.out.println("");
@@ -46,10 +91,14 @@ public class ProductMenu {
 	}
 	
 	void list(ArrayList<Product> products) {
-		//TODO
+		for (Product product : products) {
+			showProduct(product);
+		}
 	}
 	
 	void showProduct(Product product) {
-		System.out.println("id: " + product.getId() + "name: " + product.getName() + "description: " + product.getDescription() + "price: " + product.getPrice() + "stock: " + product.getStock() + "shipping included: " + product.isShippingIncluded());
+		System.out.println("id: " + product.getId() + "\tname: " + product.getName() + "\tdescription: " + product.getDescription() + "\tprice: " + product.getPrice() + "\tstock: " + product.getStock() + "\tshipping included: " + product.isShippingIncluded());
 	}
+	
+	
 }
