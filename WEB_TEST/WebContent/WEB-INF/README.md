@@ -1,0 +1,1 @@
+En este directorio van (páginas creo) que solo puede ser accedido mediante servlets.
