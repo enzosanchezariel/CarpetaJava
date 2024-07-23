@@ -1,3 +1,4 @@
+<%@ page import="entities.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,6 +9,10 @@
 		<title>WebQuizApp</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>
 		<link rel="stylesheet" href="style/index.css" />
+		<%
+		User usr = null;
+		if (request.getSession().getAttribute("user") != null) usr = (User)request.getSession().getAttribute("user");
+		%>
 	</head>
 	<body>
 		<header class="container">
@@ -24,18 +29,26 @@
 					<li><strong>TpJava WebQuizApp</strong></li>
 				</ul>
 				<ul>
-                    <li><a href="signin.jsp" class="secondary">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-                            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                        </svg>
-                    </a></li>
+				<%if(usr != null){%>
+					<li>
+						<form action="signout" method="get">
+		                    <button class="outline" type="submit" data-tooltip="Logout" data-placement="bottom" style="padding: 0.4rem; margin: 0px;">
+		                        <strong><%=usr.getUser()%></strong>
+		                    </button>
+	                    </form>
+	                </li>
+                <%}else{%>
+	                <li><a href="signin.html" class="secondary">
+	                	<button type="submit" style="padding: 0.4rem; margin: 0px;">
+		                        <strong>Sign in</strong>
+		                </button>
+	                </a></li>
+                <%}%>
                 </ul>
 			</nav>
 		</header>
 		<main class="container">
-			<% if (request.getSession().getAttribute("user") != null){%>
+			<% if (usr != null){%>
 	            <div class="grid">
 	                <div>
 	                    <article>

@@ -32,12 +32,10 @@ public class Signin extends HttpServlet {
 		User usr = new User(user, password);
 		
 		if (usr.getUser().equals("enzo") && usr.getPassword().equals("enzo")) {
-			request.getSession().setAttribute("failedLogin", false);
 			request.getSession().setAttribute("user", usr);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		} else {
-			request.getSession().setAttribute("failedLogin", true);
-			request.getRequestDispatcher("signin.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/failedSignin.html").forward(request, response);
 		}
 		
 		// getAttribute es de response y getParameter request
