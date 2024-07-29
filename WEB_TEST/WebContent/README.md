@@ -1,1 +1,0 @@
-En este directorio van HTML, CSS, JSP, JS.

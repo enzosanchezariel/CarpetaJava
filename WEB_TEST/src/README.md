@@ -1,1 +1,0 @@
-En este directorio van todas las clases java que aprendimos al principio de la materia.
